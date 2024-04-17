@@ -22,47 +22,34 @@ const Register = () => {
         console.log(path)
         try {
             const response = await fetch('https://k310qs8rs3.execute-api.eu-north-1.amazonaws.com/users', {
-            method: 'GET'
-        })
-        const data = await response.json()
-        // const response = await fetch(path, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Access-Control-Allow-Origin': '*'
-        //     },
-        //     body: JSON.stringify({
-        //         id: generateRandomID(),
-        //         name: username,
-        //         email: email,
-        //         password: password
-        //     })
-        // })
-        const emails = await data.flatMap(item => item.email)
-        console.log(emails)
-        if (emails.includes(email)) {
-            alert('An account with that email existing. Please log in')
-            router.push('/login')
-        } else {
-            const id = generateRandomID()
-            const createResponse = await fetch('https://k310qs8rs3.execute-api.eu-north-1.amazonaws.com/users', {
-                method: 'PUT',
-                body: JSON.stringify({
-                    id: id,
-                    name: username,
-                    email: email,
-                    password: password
-                })
+                method: 'GET'
             })
-            const createData = await createResponse.json()
-            const newID = createData.split(' ').pop()
-            if (newID == id) {
-                alert('Account created successfully')
+            const data = await response.json()
+            const emails = await data.flatMap(item => item.email)
+            console.log(emails)
+            if (emails.includes(email)) {
+                alert('An account with that email existing. Please log in')
                 router.push('/login')
             } else {
-                alert('Error encountered')
+                const id = generateRandomID()
+                const createResponse = await fetch('https://k310qs8rs3.execute-api.eu-north-1.amazonaws.com/users', {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        id: id,
+                        name: username,
+                        email: email,
+                        password: password
+                    })
+                })
+                const createData = await createResponse.json()
+                const newID = createData.split(' ').pop()
+                if (newID == id) {
+                    alert('Account created successfully')
+                    router.push('/login')
+                } else {
+                    alert('Error encountered')
+                }
             }
-        }
         } catch (error) {
             alert(error)
             setError(error.toString())
