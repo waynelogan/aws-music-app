@@ -17,7 +17,7 @@ export default function Home() {
           >
             By{" "}
             <Image
-              src="/vercel.svg"
+              src="https://http-crud-music-app-storage.s3.eu-north-1.amazonaws.com/test-upload.jpeg"
               alt="Vercel Logo"
               className="dark:invert"
               width={100}
