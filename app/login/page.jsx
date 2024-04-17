@@ -68,7 +68,7 @@ const Login = () => {
                 <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" onClick={handleLogin}>
                     Login
                 </button>
-                <p>Don't have an account? <Link href={'/register'} className='text-blue-500 underline underline-offset-2'>Register</Link></p>
+                <p>Don&apos;t have an account? <Link href={'/register'} className='text-blue-500 underline underline-offset-2'>Register</Link></p>
             </div>
         </div>
     )
