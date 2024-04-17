@@ -1,6 +1,6 @@
 const axios = require('axios')
 const fs = require('fs')
-const filepath = 'app/data/music1.json'
+const filepath = 'app/data/music.json'
 const musicURL = 'https://v9fz4mkkfh.execute-api.eu-north-1.amazonaws.com/music'
 
 function generateRandomID() {
