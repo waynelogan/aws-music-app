@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 
 const Register = () => {
@@ -101,6 +102,7 @@ const Register = () => {
                 <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" onClick={handleRegister}>
                     Register
                 </button>
+                <p>Have an account? <Link href={'/login'} className='text-blue-500 underline underline-offset-2'>Log in</Link></p>
             </div>
         </div>
     )

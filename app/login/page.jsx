@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -23,7 +24,7 @@ const Login = () => {
             } else if (user[0].password !== password) {
                 setError('Wrong password')
             } else {
-                router.push('/')
+                router.push(`/users/${user[0].id}`)
             }
             //   const response = await axios.post('/api/login', { email, password });
 
@@ -67,6 +68,7 @@ const Login = () => {
                 <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" onClick={handleLogin}>
                     Login
                 </button>
+                <p>Don't have an account? <Link href={'/register'} className='text-blue-500 underline underline-offset-2'>Register</Link></p>
             </div>
         </div>
     )
