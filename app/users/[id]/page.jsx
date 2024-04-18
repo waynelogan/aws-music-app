@@ -54,13 +54,15 @@ const UserIDPage = () => {
         }
     }
 
+    async function handleQuery() {
+        const fetchedSongs = await getSongs()
+        setSongs(fetchedSongs)
+    }
+
     useEffect(() => {
         getUsers().then(data => {
             const authUser = data.filter(item => item.id == id)[0]
             setUser(authUser)
-        })
-        getSongs().then(data => {
-            setSongs(data)
         })
     }, [])
 
@@ -76,8 +78,8 @@ const UserIDPage = () => {
                             <p>Email: {user?.email}</p>
                         </div>
                         <Link href={'/login'} className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600">Logout</Link>
+                        <button className="bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600" onClick={handleQuery}>Query</button>
                     </div>
-
                 </div>
                 <h1 className="text-3xl font-bold mb-4">Songs</h1>
                 <table className="w-full">
