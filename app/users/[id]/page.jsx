@@ -1,15 +1,20 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 
 const UserIDPage = () => {
     const pathName = usePathname()
-    const id = pathName.split('/').pop()
     const [user, setUser] = useState()
     const [songs, setSongs] = useState([])
-    console.log(id)
+    const router = useRouter()
+    const path = pathName.split('/')
+    if (path.length !== 3) {
+        // router.push('/login')
+    }
+    const id = path.pop()
 
     async function getUsers() {
         try {
@@ -64,11 +69,15 @@ const UserIDPage = () => {
         <main>
             <div className="container mx-auto mt-8">
                 <div className="flex justify-end mb-4">
-                    <div className="bg-gray-200 p-4 rounded">
-                        <h2 className="text-lg font-semibold mb-2">User Details</h2>
-                        <p>Name: {user?.name}</p>
-                        <p>Email: {user?.email}</p>
+                    <div className='flex flex-col gap-4'>
+                        <div className="bg-gray-200 p-4 rounded">
+                            <h2 className="text-lg font-semibold mb-2">User Details</h2>
+                            <p>Name: {user?.name}</p>
+                            <p>Email: {user?.email}</p>
+                        </div>
+                        <Link href={'/login'} className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600">Logout</Link>
                     </div>
+
                 </div>
                 <h1 className="text-3xl font-bold mb-4">Songs</h1>
                 <table className="w-full">
