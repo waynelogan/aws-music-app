@@ -55,14 +55,15 @@ const UserIDPage = () => {
     }
 
     async function handleQuery() {
-        const fetchedSongs = await getSongs()
-        setSongs(fetchedSongs)
     }
 
     useEffect(() => {
         getUsers().then(data => {
             const authUser = data.filter(item => item.id == id)[0]
             setUser(authUser)
+        })
+        getSongs().then(data => {
+            setSongs(data)
         })
     }, [])
 
